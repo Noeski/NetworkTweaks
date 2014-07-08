@@ -21,7 +21,7 @@
     CFSocketRef _listeningSocket;
 }
 
-@property (nonatomic, assign) uint16_t port;
+@property (nonatomic, assign) NSInteger port;
 @property (nonatomic, strong) NSNetService *netService;
 @property (nonatomic, strong) NSMutableArray *clients;
 
@@ -73,7 +73,7 @@
     for(FBTweakCategory *tweakCategory in tweakStore.tweakCategories) {
         NSMutableDictionary *categoryDictionary = [NSMutableDictionary dictionary];
         categoryDictionary[@"name"] = tweakCategory.name;
-        
+
         NSMutableArray *collectionArray = [NSMutableArray array];
         
         for(FBTweakCollection *tweakCollection in tweakCategory.tweakCollections) {
@@ -85,8 +85,9 @@
             for(FBTweak *tweak in tweakCollection.tweaks) {
                 NSMutableDictionary *tweakDictionary = [NSMutableDictionary dictionary];
                 tweakDictionary[@"name"] = tweak.name;
-                
-                NSString *tweakType = @"none";
+                tweakDictionary[@"identifier"] = tweak.identifier;
+
+                NSString *tweakType = @"None";
                 
                 FBTweakValue value = tweak.currentValue ? tweak.currentValue : tweak.defaultValue;
                 FBTweakValue minimumValue = tweak.minimumValue;
@@ -175,7 +176,6 @@
     
     client.delegate = self;
     [self.clients addObject:client];
-    [self refreshData:client];
 }
 
 
@@ -356,7 +356,69 @@ static void serverAcceptCallback(CFSocketRef socket, CFSocketCallBackType type, 
 }
 
 - (void)client:(FBTweakClient *)client receivedMessage:(NSDictionary *)message {
+    NSString *messageType = message[@"type"];
     
+    if([messageType isEqualToString:@"refresh"]) {
+        [self refreshData:client];
+    }
+    else if([messageType isEqualToString:@"action"]) {
+        FBTweakStore *tweakStore = [FBTweakStore sharedInstance];
+
+        NSDictionary *tweakDictionary = message[@"tweak"];
+        NSString *categoryName = tweakDictionary[@"category"];
+        NSString *collectionName = tweakDictionary[@"collection"];
+        NSString *tweakIdentifier = tweakDictionary[@"identifier"];
+
+        for(FBTweakCategory *category in tweakStore.tweakCategories) {
+            if([category.name isEqualToString:categoryName]) {
+                for(FBTweakCollection *collection in category.tweakCollections) {
+                    if([collection.name isEqualToString:collectionName]) {
+                        for(FBTweak *tweak in collection.tweaks) {
+                            if([tweak.identifier isEqualToString:tweakIdentifier]) {
+                                dispatch_block_t block = tweak.defaultValue;
+                                
+                                if(block) {
+                                    block();
+                                }
+                                break;
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+                
+                break;
+            }
+        }
+    }
+    else if([messageType isEqualToString:@"valueChanged"]) {
+        FBTweakStore *tweakStore = [FBTweakStore sharedInstance];
+        
+        NSDictionary *tweakDictionary = message[@"tweak"];
+        NSString *categoryName = tweakDictionary[@"category"];
+        NSString *collectionName = tweakDictionary[@"collection"];
+        NSString *tweakIdentifier = tweakDictionary[@"identifier"];
+        
+        for(FBTweakCategory *category in tweakStore.tweakCategories) {
+            if([category.name isEqualToString:categoryName]) {
+                for(FBTweakCollection *collection in category.tweakCollections) {
+                    if([collection.name isEqualToString:collectionName]) {
+                        for(FBTweak *tweak in collection.tweaks) {
+                            if([tweak.identifier isEqualToString:tweakIdentifier]) {
+                                tweak.currentValue = tweakDictionary[@"value"];
+                                break;
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+                
+                break;
+            }
+        }
+    }
 }
 
 @end

@@ -44,6 +44,12 @@
 		651193461969DDC00073EE06 /* FBTweakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6511933B1969DDC00073EE06 /* FBTweakViewController.m */; };
 		651193491969DE0D0073EE06 /* FBTweakServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 651193481969DE0D0073EE06 /* FBTweakServer.m */; };
 		6511934A196A1EFF0073EE06 /* FBTweakClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 651192EC1969DA630073EE06 /* FBTweakClient.m */; };
+		6511934C196AD1AF0073EE06 /* FBTweakTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6511934B196AD1AF0073EE06 /* FBTweakTableViewCell.xib */; };
+		6511934F196AD2E50073EE06 /* FBTweakTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6511934E196AD2E50073EE06 /* FBTweakTableViewCell.m */; };
+		65119352196AD4480073EE06 /* FBTweakData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65119351196AD4480073EE06 /* FBTweakData.m */; };
+		65119354196B4CD80073EE06 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65119353196B4CD80073EE06 /* Reveal.framework */; };
+		65C1B16A196B5976001023A7 /* FBTweakCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C1B169196B5976001023A7 /* FBTweakCategoryTableViewCell.m */; };
+		65C1B16C196B59A1001023A7 /* FBTweakCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65C1B16B196B59A1001023A7 /* FBTweakCategoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		651192B41969D79D0073EE06 /* NetworkTweaks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTweaks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		651192B41969D79D0073EE06 /* Tweaks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweaks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		651192B71969D79D0073EE06 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		651192BA1969D79D0073EE06 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		651192BB1969D79D0073EE06 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -127,6 +133,15 @@
 		6511933B1969DDC00073EE06 /* FBTweakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakViewController.m; sourceTree = "<group>"; };
 		651193471969DE0D0073EE06 /* FBTweakServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTweakServer.h; sourceTree = "<group>"; };
 		651193481969DE0D0073EE06 /* FBTweakServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakServer.m; sourceTree = "<group>"; };
+		6511934B196AD1AF0073EE06 /* FBTweakTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBTweakTableViewCell.xib; sourceTree = "<group>"; };
+		6511934D196AD2E50073EE06 /* FBTweakTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTweakTableViewCell.h; sourceTree = "<group>"; };
+		6511934E196AD2E50073EE06 /* FBTweakTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakTableViewCell.m; sourceTree = "<group>"; };
+		65119350196AD4480073EE06 /* FBTweakData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTweakData.h; sourceTree = "<group>"; };
+		65119351196AD4480073EE06 /* FBTweakData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakData.m; sourceTree = "<group>"; };
+		65119353196B4CD80073EE06 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../Downloads/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
+		65C1B168196B5976001023A7 /* FBTweakCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTweakCategoryTableViewCell.h; sourceTree = "<group>"; };
+		65C1B169196B5976001023A7 /* FBTweakCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakCategoryTableViewCell.m; sourceTree = "<group>"; };
+		65C1B16B196B59A1001023A7 /* FBTweakCategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBTweakCategoryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +169,7 @@
 				651192F91969DD7E0073EE06 /* CoreGraphics.framework in Frameworks */,
 				651192FB1969DD7E0073EE06 /* UIKit.framework in Frameworks */,
 				651192F71969DD7E0073EE06 /* Foundation.framework in Frameworks */,
+				65119354196B4CD80073EE06 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +201,7 @@
 		651192B51969D79D0073EE06 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				651192B41969D79D0073EE06 /* NetworkTweaks.app */,
+				651192B41969D79D0073EE06 /* Tweaks.app */,
 				651192D51969D79D0073EE06 /* NetworkTweaksTests.xctest */,
 				651192F51969DD7E0073EE06 /* iOSNetworkTweaks.app */,
 				6511930E1969DD7E0073EE06 /* iOSNetworkTweaksTests.xctest */,
@@ -209,6 +225,7 @@
 		651192B91969D79D0073EE06 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65119353196B4CD80073EE06 /* Reveal.framework */,
 				651192BA1969D79D0073EE06 /* AppKit.framework */,
 				651192BB1969D79D0073EE06 /* CoreData.framework */,
 				651192BC1969D79D0073EE06 /* Foundation.framework */,
@@ -224,6 +241,14 @@
 				651192CC1969D79D0073EE06 /* MainMenu.xib */,
 				651192EB1969DA630073EE06 /* FBTweakClient.h */,
 				651192EC1969DA630073EE06 /* FBTweakClient.m */,
+				65119350196AD4480073EE06 /* FBTweakData.h */,
+				65119351196AD4480073EE06 /* FBTweakData.m */,
+				65C1B168196B5976001023A7 /* FBTweakCategoryTableViewCell.h */,
+				65C1B169196B5976001023A7 /* FBTweakCategoryTableViewCell.m */,
+				65C1B16B196B59A1001023A7 /* FBTweakCategoryTableViewCell.xib */,
+				6511934D196AD2E50073EE06 /* FBTweakTableViewCell.h */,
+				6511934E196AD2E50073EE06 /* FBTweakTableViewCell.m */,
+				6511934B196AD1AF0073EE06 /* FBTweakTableViewCell.xib */,
 				651192CF1969D79D0073EE06 /* Images.xcassets */,
 				651192BE1969D79D0073EE06 /* Supporting Files */,
 			);
@@ -352,7 +377,7 @@
 			);
 			name = NetworkTweaks;
 			productName = NetworkTweaks;
-			productReference = 651192B41969D79D0073EE06 /* NetworkTweaks.app */;
+			productReference = 651192B41969D79D0073EE06 /* Tweaks.app */;
 			productType = "com.apple.product-type.application";
 		};
 		651192D41969D79D0073EE06 /* NetworkTweaksTests */ = {
@@ -453,8 +478,10 @@
 			files = (
 				651192C21969D79D0073EE06 /* InfoPlist.strings in Resources */,
 				651192D01969D79D0073EE06 /* Images.xcassets in Resources */,
+				65C1B16C196B59A1001023A7 /* FBTweakCategoryTableViewCell.xib in Resources */,
 				651192C81969D79D0073EE06 /* Credits.rtf in Resources */,
 				651192CE1969D79D0073EE06 /* MainMenu.xib in Resources */,
+				6511934C196AD1AF0073EE06 /* FBTweakTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +517,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6511934F196AD2E50073EE06 /* FBTweakTableViewCell.m in Sources */,
 				651192CB1969D79D0073EE06 /* AppDelegate.m in Sources */,
+				65C1B16A196B5976001023A7 /* FBTweakCategoryTableViewCell.m in Sources */,
+				65119352196AD4480073EE06 /* FBTweakData.m in Sources */,
 				651192ED1969DA630073EE06 /* FBTweakClient.m in Sources */,
 				651192C41969D79D0073EE06 /* main.m in Sources */,
 			);
@@ -679,7 +709,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NetworkTweaks/NetworkTweaks-Prefix.pch";
 				INFOPLIST_FILE = "NetworkTweaks/NetworkTweaks-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tweaks;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -692,7 +722,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NetworkTweaks/NetworkTweaks-Prefix.pch";
 				INFOPLIST_FILE = "NetworkTweaks/NetworkTweaks-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tweaks;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -746,6 +776,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/noeski/Downloads/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSNetworkTweaks/iOSNetworkTweaks-Prefix.pch";
@@ -755,6 +786,11 @@
 				);
 				INFOPLIST_FILE = "iOSNetworkTweaks/iOSNetworkTweaks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -771,11 +807,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/noeski/Downloads/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSNetworkTweaks/iOSNetworkTweaks-Prefix.pch";
 				INFOPLIST_FILE = "iOSNetworkTweaks/iOSNetworkTweaks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -848,6 +890,7 @@
 				651192E71969D79D0073EE06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		651192E81969D79D0073EE06 /* Build configuration list for PBXNativeTarget "NetworkTweaksTests" */ = {
 			isa = XCConfigurationList;
@@ -856,6 +899,7 @@
 				651192EA1969D79D0073EE06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6511931C1969DD7E0073EE06 /* Build configuration list for PBXNativeTarget "iOSNetworkTweaks" */ = {
 			isa = XCConfigurationList;
@@ -864,6 +908,7 @@
 				6511931E1969DD7E0073EE06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6511931F1969DD7E0073EE06 /* Build configuration list for PBXNativeTarget "iOSNetworkTweaksTests" */ = {
 			isa = XCConfigurationList;
@@ -872,6 +917,7 @@
 				651193211969DD7E0073EE06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

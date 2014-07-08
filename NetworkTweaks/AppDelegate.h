@@ -8,16 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FBTweakClient.h"
+#import "FBTweakTableViewCell.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSNetServiceBrowserDelegate, NSTableViewDataSource, NSTableViewDelegate, FBTweakClientDelegate> {
-    NSNetServiceBrowser *netServiceBrowser;
-    NSMutableArray *servers;
-    NSMutableArray *tweakCategories;
-}
-
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSPopUpButton *popupButton;
-@property (assign) IBOutlet NSTableView *tableView;
+@interface AppDelegate : NSObject <NSApplicationDelegate,
+NSNetServiceBrowserDelegate,
+NSTableViewDataSource,
+NSTableViewDelegate,
+FBTweakClientDelegate,
+FBTweakTableViewCellDelegate> 
+@property (nonatomic, strong) IBOutlet NSWindow *window;
+@property (nonatomic, strong) IBOutlet NSPopUpButton *popupButton;
+@property (nonatomic, strong) IBOutlet NSTableView *tableView;
+@property (nonatomic, strong) IBOutlet NSTableView *categoryTableView;
 
 - (BOOL)start;
 - (void)stop;

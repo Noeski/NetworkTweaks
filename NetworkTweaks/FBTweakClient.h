@@ -12,6 +12,7 @@
 
 @protocol FBTweakClientDelegate<NSObject>
 @optional
+- (void)clientConnectionAttemptSucceeded:(FBTweakClient *)client;
 - (void)clientConnectionAttemptFailed:(FBTweakClient *)client;
 - (void)clientConnectionTerminated:(FBTweakClient *)client;
 - (void)client:(FBTweakClient *)client receivedMessage:(NSDictionary *)message;
