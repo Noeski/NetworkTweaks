@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -825,14 +825,14 @@
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="5EE427F5-8CFD-41DC-85EF-3963A69CFEC0" label="Custom View" paletteLabel="Custom View" id="ZVO-ts-vLH">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="82" height="32"/>
+                        <size key="minSize" width="80" height="28"/>
                         <size key="maxSize" width="82" height="32"/>
                         <button key="view" verticalHuggingPriority="750" id="h9I-y3-a48">
-                            <rect key="frame" x="0.0" y="14" width="82" height="32"/>
+                            <rect key="frame" x="0.0" y="14" width="80" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OsM-uo-su0">
+                            <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OsM-uo-su0">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
                                 <action selector="refresh:" target="Voe-Tx-rLC" id="HnN-UH-d3c"/>
@@ -842,14 +842,14 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="o92-St-ScE"/>
                     <toolbarItem implicitItemIdentifier="250C464B-900D-4842-B969-76F91D079710" label="Custom View" paletteLabel="Custom View" id="Wrk-es-dAV">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="235" height="26"/>
-                        <size key="maxSize" width="235" height="26"/>
+                        <size key="minSize" width="235" height="22"/>
+                        <size key="maxSize" width="236" height="26"/>
                         <popUpButton key="view" verticalHuggingPriority="750" id="Lkp-MJ-deP">
-                            <rect key="frame" x="0.0" y="14" width="235" height="26"/>
+                            <rect key="frame" x="0.0" y="14" width="236" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Gv1-aC-ybP">
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Gv1-aC-ybP">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="menu"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <menu key="menu" title="OtherViews" id="dBd-XA-QMz">
                                     <items>
                                         <menuItem title="Item 1" id="fHZ-rQ-eMr"/>

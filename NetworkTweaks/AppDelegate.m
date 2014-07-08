@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FBTweakClient.h"
 #import "FBTweakCategoryTableViewCell.h"
+#import "FBTweakCollectionTableViewCell.h"
 #import "FBTweakData.h"
 
 @interface FBTweakTableView : NSTableView
@@ -21,11 +22,11 @@
 @end
 
 @interface AppDelegate()
+@property (nonatomic, assign) BOOL refreshing;
 @property (nonatomic, strong) NSNetServiceBrowser *netServiceBrowser;
 @property (nonatomic, strong) NSMutableArray *servers;
 @property (nonatomic, strong) FBTweakClient *client;
 @property (nonatomic, strong) NSArray *tweakCategories;
-@property (nonatomic, strong) NSArray *tweakCollections;
 @property (nonatomic, strong) NSArray *tweaks;
 @end
 
@@ -41,6 +42,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [self.categoryTableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakCategoryTableViewCell" bundle:nil] forIdentifier:@"FBTweakCategoryTableViewCell"];
+    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakCollectionTableViewCell" bundle:nil] forIdentifier:@"FBTweakCollectionTableViewCell"];
     [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakTableViewCell" bundle:nil] forIdentifier:@"FBTweakTableViewCell"];
     [self reloadData];
     [self start];
@@ -132,9 +134,11 @@
 }
 
 - (IBAction)refresh:(id)sender {
-    if(!self.client)
+    if(!self.client || self.refreshing)
         return;
     
+    self.refreshing = YES;
+
     [self.client sendNetworkPacket:@{@"type" : @"refresh"}];
 }
 
@@ -174,6 +178,22 @@
     }
 }
 
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    if(tableView == self.categoryTableView) {
+        return [self.categoryTableView rowHeight];
+    }
+    else {
+        id obj = self.tweaks[row];
+        
+        if([obj isKindOfClass:[FBTweakCollection class]]) {
+            return 22;
+        }
+        else {
+            return 28;
+        }
+    }
+}
+
 #pragma mark - NSTableViewDelegate
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
@@ -185,11 +205,21 @@
         return cell;
     }
     else {
-        FBTweakTableViewCell *cell = [tableView makeViewWithIdentifier:@"FBTweakTableViewCell" owner:self];
-        cell.delegate = self;
-        cell.tweakData = [self.tweaks objectAtIndex:row];
+        id obj = self.tweaks[row];
         
-        return cell;
+        if([obj isKindOfClass:[FBTweakCollection class]]) {
+            FBTweakCollectionTableViewCell *cell = [tableView makeViewWithIdentifier:@"FBTweakCollectionTableViewCell" owner:self];
+            cell.nameLabel.stringValue = [[obj name] uppercaseString];
+
+            return cell;
+        }
+        else {
+            FBTweakTableViewCell *cell = [tableView makeViewWithIdentifier:@"FBTweakTableViewCell" owner:self];
+            cell.delegate = self;
+            cell.tweakData = [self.tweaks objectAtIndex:row];
+            
+            return cell;
+        }
     }
 }
 
@@ -220,6 +250,7 @@
         NSMutableArray *mutableTweaks = [[NSMutableArray alloc] init];
         
         for(FBTweakCollection *collection in selectedCategory.collections) {
+            [mutableTweaks addObject:collection];
             [mutableTweaks addObjectsFromArray:collection.tweaks];
         }
         
@@ -230,8 +261,6 @@
 #pragma mark - FBTweakClientDelegate
 
 - (void)clientConnectionAttemptSucceeded:(FBTweakClient *)client {
-    NSLog(@"Client succeeded");
-
     if(client != self.client)
         return;
     
@@ -239,22 +268,14 @@
 }
 
 - (void)clientConnectionAttemptFailed:(FBTweakClient *)client {
-    NSLog(@"Client failed");
-
-    if(client != self.client)
-        return;
+    self.refreshing = NO;
 }
 
 - (void)clientConnectionTerminated:(FBTweakClient *)client {
-    NSLog(@"Client terminated");
-
-    if(client != self.client)
-        return;
+    self.refreshing = NO;
 }
 
 - (void)client:(FBTweakClient *)client receivedMessage:(NSDictionary *)message {
-    NSLog(@"Client received message");
-
     if(client != self.client)
         return;
     
@@ -268,12 +289,13 @@
     }
     
     self.tweakCategories = mutableCategories;
+    self.refreshing = NO;
 }
 
 #pragma mark - FBTweakTableViewCellDelegate
 
 - (void)tweakDidChange:(FBTweakData *)tweak {
-    if(!self.client)
+    if(!self.client || self.refreshing)
         return;
     
     [self.client sendNetworkPacket:@{@"type" : @"valueChanged",
@@ -285,7 +307,7 @@
 }
 
 - (void)tweakAction:(FBTweakData *)tweak {
-    if(!self.client)
+    if(!self.client || self.refreshing)
         return;
     
     [self.client sendNetworkPacket:@{@"type" : @"action",
