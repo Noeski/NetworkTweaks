@@ -277,10 +277,14 @@
 
 - (void)clientConnectionAttemptFailed:(FBTweakClient *)client {
     self.refreshing = NO;
+    [self.popupButton selectItemAtIndex:0];
+    [self serverSelected:self.popupButton];
 }
 
 - (void)clientConnectionTerminated:(FBTweakClient *)client {
     self.refreshing = NO;
+    [self.popupButton selectItemAtIndex:0];
+    [self serverSelected:self.popupButton];
 }
 
 - (void)client:(FBTweakClient *)client receivedMessage:(NSDictionary *)message {
