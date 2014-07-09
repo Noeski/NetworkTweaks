@@ -1,5 +1,5 @@
 //
-//  FBTweakTableViewCell.h
+//  FBTweakDataTableViewCell.h
 //  NetworkTweaks
 //
 //  Created by Noah Hilt on 7/7/14.
@@ -9,13 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import "FBTweakData.h"
 
-@protocol FBTweakTableViewCellDelegate<NSObject>
+@protocol FBTweakDataTableViewCellDelegate<NSObject>
 @optional
 - (void)tweakDidChange:(FBTweakData *)tweak;
 - (void)tweakAction:(FBTweakData *)tweak;
 @end
 
-@interface FBTweakTableViewCell : NSTableRowView<NSTextFieldDelegate>
-@property (nonatomic, weak) id<FBTweakTableViewCellDelegate> delegate;
+@interface FBTweakDataTableViewCell : NSTableRowView<NSTextFieldDelegate>
+@property (nonatomic, weak) id<FBTweakDataTableViewCellDelegate> delegate;
 @property (nonatomic, strong) FBTweakData *tweakData;
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Noah Hilt. All rights reserved.
 //
 
-#import "FBTweakTableViewCell.h"
+#import "FBTweakDataTableViewCell.h"
 
-@interface FBTweakTableViewCell()
+@interface FBTweakDataTableViewCell()
 @property (nonatomic, strong) IBOutlet NSTextField *nameLabel;
 @property (nonatomic, strong) IBOutlet NSTextField *textField;
 @property (nonatomic, strong) IBOutlet NSStepper *stepper;
@@ -16,7 +16,7 @@
 @property (nonatomic, strong) IBOutlet NSButton *actionButton;
 @end
 
-@implementation FBTweakTableViewCell
+@implementation FBTweakDataTableViewCell
 
 - (void)setTweakData:(FBTweakData *)tweakData {
     if(_tweakData != tweakData) {

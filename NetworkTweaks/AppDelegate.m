@@ -3,7 +3,7 @@
 //  NetworkTweaks
 //
 //  Created by Noah Hilt on 7/6/14.
-//  Copyright (c) 2014 ___FULLUSERNAME___. All rights reserved.
+//  Copyright (c) 2014 Noah Hilt. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -43,7 +43,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [self.categoryTableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakCategoryTableViewCell" bundle:nil] forIdentifier:@"FBTweakCategoryTableViewCell"];
     [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakCollectionTableViewCell" bundle:nil] forIdentifier:@"FBTweakCollectionTableViewCell"];
-    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakTableViewCell" bundle:nil] forIdentifier:@"FBTweakTableViewCell"];
+    [self.tableView registerNib:[[NSNib alloc] initWithNibNamed:@"FBTweakDataTableViewCell" bundle:nil] forIdentifier:@"FBTweakDataTableViewCell"];
     [self reloadData];
     [self start];
 }
@@ -107,22 +107,20 @@
 - (IBAction)serverSelected:(NSPopUpButton *)sender {
     NSInteger selectedIndex = [sender indexOfSelectedItem];
     
-    if(selectedIndex < 0 || selectedIndex > [self.servers count])
+    if(selectedIndex < 0 || selectedIndex > [self.servers count] )
         return;
     
-    if(selectedIndex == 0) {
-        if(self.client) {
-            [self.client close];
-            self.client = nil;
-        }
+    self.refreshing = NO;
+    self.tweaks = nil;
+    self.tweakCategories = nil;
+    
+    if(self.client) {
+        [self.client close];
+        self.client = nil;
     }
-    else {
+    
+    if(selectedIndex > 0) {
         NSNetService *selectedServer = self.servers[selectedIndex-1];
-        
-        if(self.client) {
-            [self.client close];
-            self.client = nil;
-        }
         
         self.client = [[FBTweakClient alloc] initWithNetService:selectedServer];
         self.client.delegate = self;
@@ -214,7 +212,7 @@
             return cell;
         }
         else {
-            FBTweakTableViewCell *cell = [tableView makeViewWithIdentifier:@"FBTweakTableViewCell" owner:self];
+            FBTweakDataTableViewCell *cell = [tableView makeViewWithIdentifier:@"FBTweakDataTableViewCell" owner:self];
             cell.delegate = self;
             cell.tweakData = [self.tweaks objectAtIndex:row];
             
@@ -292,7 +290,7 @@
     self.refreshing = NO;
 }
 
-#pragma mark - FBTweakTableViewCellDelegate
+#pragma mark - FBTweakDataTableViewCellDelegate
 
 - (void)tweakDidChange:(FBTweakData *)tweak {
     if(!self.client || self.refreshing)
