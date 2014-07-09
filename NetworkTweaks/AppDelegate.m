@@ -25,6 +25,7 @@
 @property (nonatomic, assign) BOOL refreshing;
 @property (nonatomic, strong) NSNetServiceBrowser *netServiceBrowser;
 @property (nonatomic, strong) NSMutableArray *servers;
+@property (nonatomic, strong) NSNetService *currentServer;
 @property (nonatomic, strong) FBTweakClient *client;
 @property (nonatomic, strong) NSArray *tweakCategories;
 @property (nonatomic, strong) NSArray *tweaks;
@@ -110,6 +111,17 @@
     if(selectedIndex < 0 || selectedIndex > [self.servers count] )
         return;
     
+    NSNetService *selectedServer;
+    
+    if(selectedIndex > 0) {
+        selectedServer = self.servers[selectedIndex-1];
+    }
+    
+    if(self.client && selectedServer == self.currentServer)
+        return;
+    
+    self.currentServer = selectedServer;
+    
     self.refreshing = NO;
     self.tweaks = nil;
     self.tweakCategories = nil;
@@ -119,10 +131,8 @@
         self.client = nil;
     }
     
-    if(selectedIndex > 0) {
-        NSNetService *selectedServer = self.servers[selectedIndex-1];
-        
-        self.client = [[FBTweakClient alloc] initWithNetService:selectedServer];
+    if(self.currentServer) {
+        self.client = [[FBTweakClient alloc] initWithNetService:self.currentServer];
         self.client.delegate = self;
 
         if(![self.client connect]) {
